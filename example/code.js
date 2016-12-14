@@ -18,7 +18,7 @@
 // let Ma60 = EMA(CLOSE, 60);
 // log.info(yield COUNT(GT(CLOSE,OPEN),20));
 // log.info(yield COUNT(GT(CLOSE(),OPEN()),20));
-log.info(yield MA(C(),20));
+log.info(yield BARSLAST(GT(DIV(CLOSE(),REF(CLOSE(),1)),1.1)));
 // log.info(yield ABS(GT(CLOSE,OPEN),20));
 // let AA = BARSLAST(yield Ma40 > yield Ma60 && ( yield Ma20 = Ma40 || Ma20 > Ma40));
 // let BB = REF(COUNT(yield CLOSE < yield Ma60, yield AA) = AA, 1);

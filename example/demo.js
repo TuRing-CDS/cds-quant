@@ -16,7 +16,7 @@ let demo = new Strategy('demo', path.join(__dirname, './code.js'));
 // demo.onTick({open: 10, close: 14, low: 9, high: 12, volume: 100, turnover: 1000})
 // demo.onTick({open: 10, close: 22, low: 9, high: 12, volume: 100, turnover: 1000})
 // demo.onTick({open: 10, close: 9, low: 9, high: 12, volume: 100, turnover: 1000})
-let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SZ/000001`
+let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SH/600233`
 fetch(url).then((res)=>{return res.json()}).then((json)=>{
     json.result.forEach(function(item){
         demo.onTick(item)
