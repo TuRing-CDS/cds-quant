@@ -13,10 +13,13 @@
 
 // log.info(yield SLOPE(HHV(CLOSE,5),5));
 
-let Ma20 = EMA(CLOSE, 20);
-let Ma40 = EMA(CLOSE, 40);
-let Ma60 = EMA(CLOSE, 60);
-log.info(yield COUNT('$.close>$.open',20));
+// let Ma20 = EMA(CLOSE, 20);
+// let Ma40 = EMA(CLOSE, 40);
+// let Ma60 = EMA(CLOSE, 60);
+// log.info(yield COUNT(GT(CLOSE,OPEN),20));
+// log.info(yield COUNT(GT(CLOSE(),OPEN()),20));
+log.info(yield MA(C(),20));
+// log.info(yield ABS(GT(CLOSE,OPEN),20));
 // let AA = BARSLAST(yield Ma40 > yield Ma60 && ( yield Ma20 = Ma40 || Ma20 > Ma40));
 // let BB = REF(COUNT(yield CLOSE < yield Ma60, yield AA) = AA, 1);
 // let CC = CROSS(CLOSE,Ma60) && VOLUME > yield MA(VOLUME,5) && (CLOSE-REF(CLOSE,1))/REF(CLOSE,1)*100 > 3;

@@ -21,4 +21,5 @@ fetch(url).then((res)=>{return res.json()}).then((json)=>{
     json.result.forEach(function(item){
         demo.onTick(item)
     })
+    console.log("==>",demo.context.datas)
 })
