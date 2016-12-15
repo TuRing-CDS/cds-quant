@@ -22,7 +22,5 @@ fetch(url).then((res)=>{return res.json()}).then((json)=>{
         demo.onTick(item)
     })
     console.log("==>",json.result.length);
-    demo.context.datas.forEach(function(item,index){
-        console.log(item)
-    })
+
 })

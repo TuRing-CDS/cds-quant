@@ -13,19 +13,21 @@
 
 // log.info(yield SLOPE(HHV(CLOSE,5),5));
 
-let Ma20 = MEMA(COUNT(GT(CLOSE(),OPEN()),10), 20);
-// let Ma40 = MA(CLOSE(), 40);
-// let Ma60 = MA(CLOSE(), 60);
-// log.info(yield COUNT(GT(CLOSE,OPEN),20));
+// let Ma20 = EMA('$.close', 20);
+// let Ma40 = EMA('$.close', 40);
+// let Ma60 = EMA('$.close', 60);
+log.info(COUNT(CLOSE.GT(OPEN), 20));
 // log.info(yield COUNT(GT(CLOSE(),OPEN()),20));
 // log.info(yield BARSLAST(GT(DIV(CLOSE(),REF(CLOSE(),1)),1.1)));
+// log.info(yield Ma20,yield Ma40,yield Ma60);
 // log.info(yield ABS(GT(CLOSE,OPEN),20));
 // let AA = BARSLAST(GT(Ma40, Ma60), OR(EQ(Ma20, Ma40), GT(Ma20, Ma40)));
-// let BB = REF(COUNT(LT(CLOSE(), Ma60), AA), 1);
+// let BB = REF(EQ(COUNT(LT(CLOSE(), Ma60),AA)), 1);
 // let CC = CROSS(CLOSE(), Ma60)
-log.info(yield Ma20);
+// log.info(yield TIME());
 // let BB = REF(COUNT(yield CLOSE < yield Ma60, yield AA) = AA, 1);
 // let CC = CROSS(CLOSE,Ma60) && VOLUME > yield MA(VOLUME,5) && (CLOSE-REF(CLOSE,1))/REF(CLOSE,1)*100 > 3;
 // let FRCS: yield BB && yield CC;
 
 // log.info(yield OR(GT(CLOSE(),OPEN()),GT(VOLUME(),REF(VOLUME(),1))));
+
