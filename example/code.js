@@ -16,7 +16,7 @@
 // let Ma20 = EMA('$.close', 20);
 // let Ma40 = EMA('$.close', 40);
 // let Ma60 = EMA('$.close', 60);
-log.info(COUNT(CLOSE.GT(OPEN), 20));
+log.info(CLOSE.ADD(OPEN));
 // log.info(yield COUNT(GT(CLOSE(),OPEN()),20));
 // log.info(yield BARSLAST(GT(DIV(CLOSE(),REF(CLOSE(),1)),1.1)));
 // log.info(yield Ma20,yield Ma40,yield Ma60);
