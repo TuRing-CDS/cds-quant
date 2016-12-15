@@ -13,15 +13,13 @@
 
 // log.info(yield SLOPE(HHV(CLOSE,5),5));
 
-// let Ma20 = EMA('$.close', 20);
-// let Ma40 = EMA('$.close', 40);
-// let Ma60 = EMA('$.close', 60);
-log.info(CLOSE.DIV(OPEN));
+let Ma20 = EMA(CLOSE, 5);
+// log.info(CLOSE.DIV(OPEN));
 // log.info(yield COUNT(GT(CLOSE(),OPEN()),20));
 // log.info(yield BARSLAST(GT(DIV(CLOSE(),REF(CLOSE(),1)),1.1)));
 // log.info(yield Ma20,yield Ma40,yield Ma60);
 // log.info(yield ABS(GT(CLOSE,OPEN),20));
-// let AA = BARSLAST(GT(Ma40, Ma60), OR(EQ(Ma20, Ma40), GT(Ma20, Ma40)));
+log.info(Ma20)
 // let BB = REF(EQ(COUNT(LT(CLOSE(), Ma60),AA)), 1);
 // let CC = CROSS(CLOSE(), Ma60)
 // log.info(yield TIME());
