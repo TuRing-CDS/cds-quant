@@ -1,7 +1,43 @@
-/**
- * Created by Z on 2016-12-16.
- */
 EQ(
     COUNT(
-        LT(CLOSE,EMA(CLOSE60)),
-        BARSLAST(AND(GT(EMA(CLOSE40)EMA(CLOSE60))OR(EQ(EMA(CLOSE20)EMA(CLOSE40))GT(EMA(CLOSE20)EMA(CLOSE40))))))BARSLAST(AND(GT(EMA(CLOSE40)EMA(CLOSE60))OR(EQ(EMA(CLOSE20)EMA(CLOSE40))GT(EMA(CLOSE20)EMA(CLOSE40))))))
+        LT(
+            CLOSE,EMA(CLOSE,60)
+        ),
+        BARSLAST(
+            AND(
+                GT(
+                    EMA(CLOSE,40),
+                    EMA(CLOSE,60)
+                ),
+                OR(
+                    EQ(
+                        EMA(CLOSE,20),
+                        EMA(CLOSE,40)
+                    ),
+                    GT(
+                        EMA(CLOSE,20),
+                        EMA(CLOSE,40)
+                    )
+                )
+            )
+        )
+    ),
+    BARSLAST(
+        AND(
+            GT(
+                EMA(CLOSE,40),
+                EMA(CLOSE,60)
+            ),
+            OR(
+                EQ(
+                    EMA(CLOSE,20),
+                    EMA(CLOSE,40)
+                ),
+                GT(
+                    EMA(CLOSE,20),
+                    EMA(CLOSE,40)
+                )
+            )
+        )
+    )
+)
