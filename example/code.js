@@ -10,55 +10,16 @@
 // BB:=REF(COUNT(C<MA60,AA)=AA,1);
 // CC:=CROSS(CLOSE,MA60) AND VOL > MA(VOL,5) and (CLOSE-REF(CLOSE,1))/REF(CLOSE,1)*100>3;
 // FRCS:BB AND CC;
+// RSV:=(CLOSE-LLV(LOW,N))/(HHV(HIGH,N)-LLV(LOW,N))*100;
+// K:SMA(RSV,M1,1);
+// D:SMA(K,M2,1);
+// J:3*K-2*D;
 
-
-// let MA20 = EMA(CLOSE, 20);
-// let MA40 = EMA(CLOSE, 40);
-// let MA60 = EMA(CLOSE, 60);
-// let AA = BARSLAST(MA40.GT(MA60).AND(MA20.EQ(MA40).OR(MA20.GT(MA40))));
-// log.info(COUNT(CLOSE.LT(MA60), AA).EQ(AA))
-let r = EQ(
-    COUNT(
-        LT(
-            CLOSE,EMA(CLOSE,60)
-        ),
-        BARSLAST(
-            AND(
-                GT(
-                    EMA(CLOSE,40),
-                    EMA(CLOSE,60)
-                ),
-                OR(
-                    EQ(
-                        EMA(CLOSE,20),
-                        EMA(CLOSE,40)
-                    ),
-                    GT(
-                        EMA(CLOSE,20),
-                        EMA(CLOSE,40)
-                    )
-                )
-            )
-        )
-    ),
-    BARSLAST(
-        AND(
-            GT(
-                EMA(CLOSE,40),
-                EMA(CLOSE,60)
-            ),
-            OR(
-                EQ(
-                    EMA(CLOSE,20),
-                    EMA(CLOSE,40)
-                ),
-                GT(
-                    EMA(CLOSE,20),
-                    EMA(CLOSE,40)
-                )
-            )
-        )
-    )
-)
-
-log.info(r,TIME)
+let N = 9;
+let M1 = 3;
+let M2 = 3;
+let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N).MUL(100)));
+let K = SMA(RSV, M1, 1);
+let D = SMA(K, M2, 1);
+let J = K.MUL(3).SUB(D.MUL(2))
+log.info(K, D, J)

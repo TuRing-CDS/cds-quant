@@ -1,43 +1,37 @@
-EQ(
-    COUNT(
-        LT(
-            CLOSE,EMA(CLOSE,60)
-        ),
-        BARSLAST(
-            AND(
-                GT(
-                    EMA(CLOSE,40),
-                    EMA(CLOSE,60)
-                ),
-                OR(
-                    EQ(
-                        EMA(CLOSE,20),
-                        EMA(CLOSE,40)
-                    ),
-                    GT(
-                        EMA(CLOSE,20),
-                        EMA(CLOSE,40)
-                    )
+(
+    (
+        SMA(
+            (
+                (
+                    (CLOSE - LLV(LOW,9)) / HHV(HIGH,9)
                 )
-            )
-        )
-    ),
-    BARSLAST(
-        AND(
-            GT(
-                EMA(CLOSE,40),
-                EMA(CLOSE,60)
+                -
+                (
+                    LLV(LOW,9) * 100
+                )
             ),
-            OR(
-                EQ(
-                    EMA(CLOSE,20),
-                    EMA(CLOSE,40)
+            3,
+            1
+        ) * 3
+    )
+    -
+    (
+        SMA(
+            SMA(
+                (
+                    (
+                        (CLOSE - LLV(LOW,9)) / HHV(HIGH,9)
+                    )
+                    -
+                    (
+                        LLV(LOW,9) * 100
+                    )
                 ),
-                GT(
-                    EMA(CLOSE,20),
-                    EMA(CLOSE,40)
-                )
-            )
-        )
+                3,
+                1
+            ),
+            3,
+            1
+        ) * 2
     )
 )
