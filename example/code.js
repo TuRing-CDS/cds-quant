@@ -18,8 +18,9 @@
 let N = 9;
 let M1 = 3;
 let M2 = 3;
+//RSV:=(CLOSE-LLV(LOW,N))/(HHV(HIGH,N)-LLV(LOW,N))*100;
 let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N))).MUL(100);
 let K = SMA(RSV, M1, 1);
 let D = SMA(K, M2, 1);
-let J = K.MUL(3).SUB(D.MUL(2))
+let J = K * 3 - D * 2;
 log.info(K, D, J)

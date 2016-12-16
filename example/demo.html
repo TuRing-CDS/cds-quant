@@ -1,0 +1,32 @@
+<textarea id="result" rows="10" cols="100"></textarea>
+
+<script type="text/javascript">
+
+    var data = [' <img alt="" border="0" name="g6-o44-1" onload="DrawImage" src="/bmp/foo1.jpg" />', ' <img src="/bmp/foo2.jpg" alt="" border="0" name="g6-o44-2" onload="DrawImage" />'] ;
+
+    var reg = /<img\b(?=(?:(?!name=).)*name=(['"]?)([^'"\s>]+)\1)(?:(?!src=).)*src=(['"]?)([^'"\s>]+)\3[^>]*>/i;
+
+    for(var i=0;i<data.length;i++)
+
+    {
+
+        var s = data[i];
+
+        document.getElementById("result").value += "源字符串：" + s + "\n";
+
+        document.write("<br />");
+
+        if(reg.test(s))
+
+        {
+
+            document.getElementById("result").value += "name: " + RegExp.$2 + "\n";
+
+            document.getElementById("result").value += "src: " + RegExp.$4 + "\n";
+
+        }
+
+    }
+
+</script>
+
