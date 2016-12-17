@@ -3,45 +3,57 @@
  */
 'use strict'
 
-let str = 'let RSV = (CLOSE - LLV(LOW, 9)) / (HHV(HIGH, 3) - LLV(LOW, 6)) * 100;'
+let str = '(CLOSE - LLV(LOW, 9)) / (HHV(HIGH, 3) - LLV(LOW, 6)) * 100;'
 // let str = '2008-12-31'
 
-var fn = function () {
-    //$regex = '/('.'(?:[^()]|/(' x $depth . '[^()]*' . '/))*' x $depth .'/)';
-    // var reg = /((?<mm>\()|(?<−mm>)|[^()])*(?(mm)(?!))\)/;
-    // var reg = /((?:\()|(?:-)|[^()]*(?:(?!)))/;
+var isIndexOf = function (str) {
+    if (str.indexOf('-') != -1) {
+        return '-';
+    }
+    if (str.indexOf('+') != -1) {
+        return '+';
+    }
+    if (str.indexOf('*') != -1) {
+        return '*';
+    }
+    if (str.indexOf('/') != -1) {
+        return '/';
+    }
+    return null;
+}
+
+var fn = function (str) {
     var reg = /((?:\()|(?:\))|[^()]*(?:(?!)))/g;
-    console.log(str.match(reg));
     let item = null;
-    let temp = {};
-    let array = [];
-    let result = [];
+    var stack = [];
+    var result = [];
+    let current = 0;
     while ((item = reg.exec(str)) != null) {
         if (item[0] == '(') {
-            array.push({begin: item.index});
+            stack.push(item.index);
+            if (current) {
+                result.push(str.substr(current + 1, item.index - current - 1))
+                current = 0;
+            }
         } else {
-            let temp = array.pop();
-            temp.end = item.index;
-            result.push(temp);
+            let tmp = stack.pop();
+            if (!stack.length) {
+                current = item.index;
+            }
+            let substr = str.substr(tmp + 1, item.index - tmp - 1);
+            let split = isIndexOf(substr);
+            if (split) {
+                let splitstrs = substr.split(split);
+                splitstrs.splice(0, 0, '(');
+                splitstrs.splice(2, 0, split);
+                splitstrs.push(')')
+                result = result.concat(splitstrs)
+            }
         }
     }
-    result = result.map((item) => {
-        return str.substr(item.begin, item.end - item.begin + 1)
-    })
-    // result = result.map((item) => {
-    //     if(item.indexOf('-')!=-1){
-    //         return 'SUB'+item.replace('-',',');
-    //     }
-    //     if(item.indexOf('+')!=-1){
-    //         return 'ADD'+item.replace('+',',');
-    //     }
-    //     if(item.indexOf('*')!=-1){
-    //         return 'MUL'+item.replace('*',',');
-    //     }
-    //     if(item.indexOf('/')!=-1){
-    //         return 'DEV'+item.replace('/',',');
-    //     }
-    // })
-    console.log(result)
+    return result.map(function(item){
+        return item.trim();
+    });
 }
-fn();
+
+console.log(fn(str).join(''));
