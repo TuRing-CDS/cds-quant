@@ -3,57 +3,76 @@
  */
 'use strict'
 
-let str = '(CLOSE - LLV(LOW, 9)) / (HHV(HIGH, 3) - LLV(LOW, 6)) * 100;'
+// let str = '{CLOSE - LLV[LOW, 9]} / {HHV[HIGH, 3] - LLV[LOW, 6]} * 100;'.replace(';','')
+// let str = '1+((2+3)*4)-5'
+//  123+4*+5-
+let str = '1+((2+3-4*5)*4)-5'
+// let str = 'a + b*c + (d * e + f) * g';
+// let str = '1+2*3+(4*5+6)*7';
+//  123*+45*6+7*+
+// var reg = /((?:\()|(?:\))|[^()]*(?:(?!)))/g;
 // let str = '2008-12-31'
 
-var isIndexOf = function (str) {
-    if (str.indexOf('-') != -1) {
-        return '-';
-    }
-    if (str.indexOf('+') != -1) {
-        return '+';
-    }
-    if (str.indexOf('*') != -1) {
-        return '*';
-    }
-    if (str.indexOf('/') != -1) {
-        return '/';
-    }
-    return null;
+function isOperator(input) {
+    let operator = '+-*/(';
+    return operator.indexOf(input) != -1;
 }
 
-var fn = function (str) {
-    var reg = /((?:\()|(?:\))|[^()]*(?:(?!)))/g;
-    let item = null;
-    var stack = [];
-    var result = [];
-    let current = 0;
-    while ((item = reg.exec(str)) != null) {
-        if (item[0] == '(') {
-            stack.push(item.index);
-            if (current) {
-                result.push(str.substr(current + 1, item.index - current - 1))
-                current = 0;
+function getPriority(input) {
+    switch (input) {
+        case '+':
+        case '-':
+            return 1;
+        case '*':
+        case '/':
+            return 2;
+        case '(':
+            return 3;
+        default:
+            return 0;
+    }
+}
+
+function npolan(str) {
+    let stack = [];
+    let queue = [];
+    for (let i = 0, len = str.length; i < len; i++) {
+        let item = str[i].trim();
+        if (!item)continue;
+        console.log('>>>', queue, stack, item)
+        if (isOperator(item)) {
+            let last = null;
+            let isDeal = false;
+            if(getPriority(item)>getPriority(stack[stack.length-1])){
+                stack.push(item)
+            }else{
+                while ((last = stack.pop()) && last && getPriority(last) >= getPriority(item) && '(' != item && last) {
+                    if ('(' != last) {
+                        queue.push(last);
+                    } else {
+                        stack.push(last);
+                        isDeal = true;
+                        break;
+                    }
+                    isDeal = true;
+                }
+                stack.push(item)
             }
         } else {
-            let tmp = stack.pop();
-            if (!stack.length) {
-                current = item.index;
-            }
-            let substr = str.substr(tmp + 1, item.index - tmp - 1);
-            let split = isIndexOf(substr);
-            if (split) {
-                let splitstrs = substr.split(split);
-                splitstrs.splice(0, 0, '(');
-                splitstrs.splice(2, 0, split);
-                splitstrs.push(')')
-                result = result.concat(splitstrs)
+            if (')' == item) {
+                let last = null;
+                while ((last = stack.pop()) != '(' && last) {
+                    if ('(' != last) {
+                        queue.push(last);
+                    }
+                }
+            } else {
+                queue.push(item);
             }
         }
     }
-    return result.map(function(item){
-        return item.trim();
-    });
+    queue = queue.concat(stack);
+    return queue;
 }
 
-console.log(fn(str).join(''));
+console.log(npolan(str).join(''))
