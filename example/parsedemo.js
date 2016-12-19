@@ -3,10 +3,10 @@
  */
 'use strict'
 
-// let str = '{CLOSE - LLV[LOW, 9]} / {HHV[HIGH, 3] - LLV[LOW, 6]} * 100;'.replace(';','')
+let str = '(CLOSE - LLV[LOW, 9]) / (HHV[HIGH, 3] - LLV[LOW, 6]) * 100'
 // let str = '1+((2+3)*4)-5'
 //  123+4*+5-
-let str = '1+((2+3-4*5)*4)-5'
+// let str = '1+((2+3-4*5)*4)-5'
 // let str = 'a + b*c + (d * e + f) * g';
 // let str = '1+2*3+(4*5+6)*7';
 //  123*+45*6+7*+
@@ -36,25 +36,26 @@ function getPriority(input) {
 function npolan(str) {
     let stack = [];
     let queue = [];
+    let temp = [];
     for (let i = 0, len = str.length; i < len; i++) {
         let item = str[i].trim();
         if (!item)continue;
-        console.log('>>>', queue, stack, item)
         if (isOperator(item)) {
+            if (temp.length) {
+                queue.push(temp.join(''));
+                temp = [];
+            }
             let last = null;
-            let isDeal = false;
-            if(getPriority(item)>getPriority(stack[stack.length-1])){
+            if (getPriority(item) > getPriority(stack[stack.length - 1])) {
                 stack.push(item)
-            }else{
+            } else {
                 while ((last = stack.pop()) && last && getPriority(last) >= getPriority(item) && '(' != item && last) {
                     if ('(' != last) {
                         queue.push(last);
                     } else {
                         stack.push(last);
-                        isDeal = true;
                         break;
                     }
-                    isDeal = true;
                 }
                 stack.push(item)
             }
@@ -67,12 +68,37 @@ function npolan(str) {
                     }
                 }
             } else {
-                queue.push(item);
+                // queue.push(item);
+                temp.push(item);
             }
         }
     }
+    queue.push(temp.join(''));
     queue = queue.concat(stack);
     return queue;
 }
 
-console.log(npolan(str).join(''))
+// console.log(npolan(str).join(','))
+
+var array = npolan(str);
+console.log(array)
+var result = [];
+
+var deal = function (array) {
+    let item = array.pop();
+    if (item) {
+        if ('*' == item) {
+            return 'MUL(' + deal(array) +','+ deal(array) + ')';
+        } else if ('/' == item) {
+            return 'DIV(' + deal(array) +','+ deal(array) + ')';
+        } else if ('-' == item) {
+            return 'SUB(' + deal(array) +','+ deal(array) + ')';
+        } else if ('+' == item) {
+            return 'ADD(' + deal(array) +','+ deal(array) + ')';
+        }else{
+            return item;
+        }
+    }
+}
+
+console.log(deal(array).replace(/\[/g,'(').replace(/\]/g,')'))
