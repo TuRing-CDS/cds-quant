@@ -1,26 +1,12 @@
 /**
  * Created by Z on 2016-12-13.
  */
-
-
-// MA20:=EMA(CLOSE,20);
-// MA40:=EMA(CLOSE,40);
-// MA60:=EMA(CLOSE,60);
-// AA:=BARSLAST(MA40>MA60 AND(MA20=MA40 OR MA20>MA40));
-// BB:=REF(COUNT(C<MA60,AA)=AA,1);
-// CC:=CROSS(CLOSE,MA60) AND VOL > MA(VOL,5) and (CLOSE-REF(CLOSE,1))/REF(CLOSE,1)*100>3;
-// FRCS:BB AND CC;
-// RSV:=(CLOSE-LLV(LOW,N))/(HHV(HIGH,N)-LLV(LOW,N))*100;
-// K:SMA(RSV,M1,1);
-// D:SMA(K,M2,1);
-// J:3*K-2*D;
-
 let N = 9;
 let M1 = 3;
 let M2 = 3;
-//RSV:=(CLOSE-LLV(LOW,N))/(HHV(HIGH,N)-LLV(LOW,N))*100;
 let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N))).MUL(100);
 let K = SMA(RSV, M1, 1);
 let D = SMA(K, M2, 1);
 let J = K * 3 - D * 2;
 log.info(K, D, J)
+score = K;
