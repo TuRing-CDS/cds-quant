@@ -33,8 +33,8 @@ fetch(url).then((res)=>{return res.json()}).then((json)=>{
     json.result.forEach(function(item){
         demo.onTick(item)
     })
-    console.log(demo.context.draw.getResult().values)
-    console.log("==>",demo.context.stock.getResult());
+    // console.log(demo.context.draw.getResult().values)
+    // console.log("==>",demo.context.stock.getResult());
     // demo.context.datas.forEach(function(item){
     //     console.log(item)
     // })
