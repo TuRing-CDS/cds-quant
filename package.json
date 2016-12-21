@@ -1,0 +1,26 @@
+{
+  "name": "cds-quant",
+  "version": "0.0.3",
+  "description": "cds-quant",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TuRing-CDS/cds-quant.git"
+  },
+  "keywords": [
+    "cds",
+    "quant"
+  ],
+  "author": "admin@cavacn.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TuRing-CDS/cds-quant/issues"
+  },
+  "homepage": "https://github.com/TuRing-CDS/cds-quant#readme"
+}
