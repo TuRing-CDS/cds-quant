@@ -23,4 +23,4 @@ let N = 14;
 let TYP = DIV(ADD(HIGH,ADD(LOW,CLOSE)),3);
 // (TYP-MA(TYP,N))/(0.015*AVEDEV(TYP,N));
 let CCI = DIV(SUB(TYP,MA(TYP,N)),MUL(0.015,AVERAGE(TYP,N)));
-log.info('CCI',AVERAGE(CLOSE,N));
+log.info('CCI',CCI);
