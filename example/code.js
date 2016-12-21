@@ -3,7 +3,6 @@
  */
 
 // KDJ
-
 // let N = 9;
 // let M1 = 3;
 // let M2 = 3;
@@ -18,9 +17,16 @@
 
 
 // CCI
-let N = 14;
-// let TYP = (HIGH + LOW + CLOSE)/3;
-let TYP = DIV(ADD(HIGH,ADD(LOW,CLOSE)),3);
-// (TYP-MA(TYP,N))/(0.015*AVEDEV(TYP,N));
-let CCI = DIV(SUB(TYP,MA(TYP,N)),MUL(0.015,AVERAGE(TYP,N)));
-log.info('CCI',CCI);
+// let N = 14;
+// let TYP = DIV(ADD(HIGH,ADD(LOW,CLOSE)),3);
+// let CCI = DIV(SUB(TYP,MA(TYP,N)),MUL(0.015,AVERAGE(TYP,N)));
+// log.info('CCI',CCI);
+
+// MACD
+let SHORT = 12;
+let LONG = 26;
+let M = 9;
+let DIFF = SUB(EMA(CLOSE, SHORT), EMA(CLOSE, LONG));
+let DEA = EMA(DIFF, M);
+let MACD = MUL(2, SUB(DIFF, DEA));
+log.info(DIFF, DEA, MACD);
