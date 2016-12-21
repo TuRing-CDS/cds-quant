@@ -1,2 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/*
+.idea/cds-quant.iml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
