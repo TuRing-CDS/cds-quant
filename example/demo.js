@@ -33,10 +33,10 @@ fetch(url).then((res)=>{return res.json()}).then((json)=>{
     json.result.forEach(function(item){
         demo.onTick(item)
     })
-    // console.log('===>',demo.getResult());
+    console.log('===>',demo.getResult());
     let fs = require('fs');
     fs.writeFileSync('./demo2.js',JSON.stringify(demo.getResult()));
-    console.log('...文件写入成功');
+    // console.log('...文件写入成功');
     // console.log(demo.context.draw.getResult().values)
     // console.log("==>",demo.context.stock.getResult());
     // demo.context.datas.forEach(function(item){

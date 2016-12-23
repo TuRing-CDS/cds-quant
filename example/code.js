@@ -1,7 +1,7 @@
 /**
  * Created by Z on 2016-12-13.
  */
-// MACD
+// // MACD
 let SHORT = 12;
 let LONG = 26;
 let M = 9;
@@ -29,5 +29,5 @@ stock.choose(K);
 // CCI
 let N2 = 14;
 let TYP = DIV(ADD(HIGH, ADD(LOW, CLOSE)), 3);
-let CCI = DIV(SUB(TYP, MA(TYP, N2)), MUL(0.015, AVERAGE(TYP, N)));
+let CCI = DIV(SUB(TYP, MA(TYP, N2)), MUL(0.015, AVERAGE(TYP, N2)));
 draw.line('CCI', CCI, {color: '#ff0000', screen: 'sc3'});
