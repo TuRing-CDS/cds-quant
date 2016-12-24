@@ -24,7 +24,7 @@ let J = MUL(K, 3).SUB(MUL(D, 2));
 draw.line('K', K, {color: '#ff00ff', screen: 'sc2'});
 draw.line('D', D, {color: '#ff66ff', screen: 'sc2'});
 draw.line('J', J, {color: '#ff99ff', screen: 'sc2'});
-stock.choose(K);
+// stock.choose(K);
 
 // CCI
 let N2 = 14;
