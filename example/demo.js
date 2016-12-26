@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 
 const Redis = require('redis');
 const local = Redis.createClient(6379);
+const fs = require('fs');
 // local.zrange('SS.DAYS.600233.DATE.SSE.A_STOCK', 0, -1, function (err, result) {
 //     // console.log(err, result.length)
 //     result.map((item) => {
@@ -29,12 +30,11 @@ const local = Redis.createClient(6379);
 
 let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SH/600233`
 fetch(url).then((res)=>{return res.json()}).then((json)=>{
-    let demo = new Strategy('demo', path.join(__dirname, './code.js'));
+    let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString());
     json.result.forEach(function(item){
         demo.onTick(item)
     })
     console.log('===>',demo.getResult());
-    let fs = require('fs');
     fs.writeFileSync('./demo2.js',JSON.stringify(demo.getResult()));
     // console.log('...文件写入成功');
     // console.log(demo.context.draw.getResult().values)
