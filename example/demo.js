@@ -28,14 +28,14 @@ const fs = require('fs');
 //
 // })
 
-let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SH/600233`
+let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SZ/000001`
 fetch(url).then((res)=>{return res.json()}).then((json)=>{
     let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString());
     json.result.forEach(function(item){
         demo.onTick(item)
     })
-    console.log('===>',demo.getResult());
-    fs.writeFileSync('./demo2.js',JSON.stringify(demo.getResult()));
+    // console.log('===>',demo.getResult());
+    // fs.writeFileSync('./demo2.js',JSON.stringify(demo.getResult()));
     // console.log('...文件写入成功');
     // console.log(demo.context.draw.getResult().values)
     // console.log("==>",demo.context.stock.getResult());
