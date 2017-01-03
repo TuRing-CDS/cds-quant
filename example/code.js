@@ -15,13 +15,13 @@
 //
 
 // // KDJ
-let N = 9;
-let M1 = 3;
-let M2 = 3;
-let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N))).MUL(100);
-let K = SMA(RSV, M1, 1);
-let D = SMA(K, M2, 1);
-let J = MUL(K, 3).SUB(MUL(D, 2));
+// let N = 9;
+// let M1 = 3;
+// let M2 = 3;
+// let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N))).MUL(100);
+// let K = SMA(RSV, M1, 1);
+// let D = SMA(K, M2, 1);
+// let J = MUL(K, 3).SUB(MUL(D, 2));
 // draw.line('K', K, {color: '#ff00ff', screen: 'sc2'});
 // draw.line('D', D, {color: '#ff66ff', screen: 'sc2'});
 // draw.line('J', J, {color: '#ff99ff', screen: 'sc2'});
@@ -63,12 +63,10 @@ let J = MUL(K, 3).SUB(MUL(D, 2));
 // ADX: MA(ABS(MDI-PDI)/(MDI+PDI)*100,M);
 // ADXR:(ADX+REF(ADX,M))/2;
 
-// let N = 14;
-// let M = 6;
+// log.info(K,D,J);
+let N = 14;
+let M = 6;
 
-// let TR = SUM(Max(MAX(HIGH.SUB(LOW), ABS(HIGH.SUB(REF(CLOSE, 1)))), ABS(LOW.SUB(REF(CLOSE, 1)))), N);
-// let HD = HIGH.SUB(REF(HIGH,1));
-// let LD = REF(LOW,1).SUB(LOW);
-// let DEMOIF = IF(CLOSE.GT(REF(CLOSE,1)),'true---','false===');
-// log.info(DEMOIF);
-log.info(K,D,J);
+let TR = SUM(MAX(MAX(HIGH.SUB(LOW), ABS(HIGH.SUB(REF(CLOSE, 1)))), ABS(LOW.SUB(REF(CLOSE, 1)))), N);
+let HD = HIGH.SUB(REF(HIGH,1));
+let LD = REF(LOW,1).SUB(LOW);
