@@ -14,23 +14,40 @@
 // draw.line('DEA', DEA, {color: '#00ffff', screen: 'sc1'});
 //
 
-// CCI
+// // KDJ
+// let N = 9;
+// let M1 = 3;
+// let M2 = 3;
+// let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N))).MUL(100);
+// let K = SMA(RSV, M1, 1);
+// let D = SMA(K, M2, 1);
+// let J = MUL(K, 3).SUB(MUL(D, 2));
+// draw.line('K', K, {color: '#ff00ff', screen: 'sc2'});
+// draw.line('D', D, {color: '#ff66ff', screen: 'sc2'});
+// draw.line('J', J, {color: '#ff99ff', screen: 'sc2'});
+// // log.info(K,D,J)
+// score.choose(K);
+//
+// // CCI
 // let N2 = 14;
 // let TYP = DIV(ADD(HIGH, ADD(LOW, CLOSE)), 3);
 // let CCI = DIV(SUB(TYP, MA(TYP, N2)), MUL(0.015, AVERAGE(TYP, N2)));
 // draw.line('CCI', CCI, {color: '#ff0000', screen: 'sc3'});
 // log.info(CCI)
 
-// // KDJ
-let N = 9;
-let M1 = 3;
-let M2 = 3;
-let RSV = CLOSE.SUB(LLV(LOW, N)).DIV(HHV(HIGH, N).SUB(LLV(LOW, N))).MUL(100);
-let K = SMA(RSV, M1, 1);
-let D = SMA(K, M2, 1);
-let J = MUL(K, 3).SUB(MUL(D, 2));
-draw.line('K', K, {color: '#ff00ff', screen: 'sc2'});
-draw.line('D', D, {color: '#ff66ff', screen: 'sc2'});
-draw.line('J', J, {color: '#ff99ff', screen: 'sc2'});
-// log.info(K,D,J)
-score.choose(K);
+//RSI
+
+// REFLINE: 0, 20, 50, 80, 100;
+// LC := REF(CLOSE,1);
+// RSI1:SMA(MAX(CLOSE-LC,0),N1,1)/SMA(ABS(CLOSE-LC),N1,1)*100;
+// RSI2:SMA(MAX(CLOSE-LC,0),N2,1)/SMA(ABS(CLOSE-LC),N2,1)*100;
+// RSI3:SMA(MAX(CLOSE-LC,0),N3,1)/SMA(ABS(CLOSE-LC),N3,1)*100;
+
+let RSIN1 = 6;
+let RSIN2 = 12;
+let RSIN3 = 24;
+let LC = REF(CLOSE, 1);
+let RSI1 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN1, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN1, 1)).MUL(100);
+let RSI2 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN2, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN2, 1)).MUL(100);
+let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
+log.info(RSI1,RSI2,RSI3)

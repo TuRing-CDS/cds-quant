@@ -15,4 +15,10 @@ var fn = function(){
     return f;
 }
 
-console.log(fn.add(fn))
+// console.log(fn.add(fn))
+
+var fn2 = function(){
+    return [].slice.call(arguments)
+}
+
+console.log(fn2(1,2,3,4,5))

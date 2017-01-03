@@ -28,7 +28,7 @@ const fs = require('fs');
 //
 // })
 
-let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SZ/000001`
+let url = `https://api.cavacn.com/tools/stock/quotation/0.2/days/SH/600233`
 fetch(url).then((res)=>{return res.json()}).then((json)=>{
     let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString());
     json.result.forEach(function(item){
