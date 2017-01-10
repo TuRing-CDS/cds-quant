@@ -64,16 +64,16 @@
 // ADXR:(ADX+REF(ADX,M))/2;
 
 // log.info(K,D,J);
-let N = 14;
-let M = 6;
-
-let TR = SUM(MAX(MAX(HIGH.SUB(LOW), ABS(HIGH.SUB(REF(CLOSE, 1)))), ABS(LOW.SUB(REF(CLOSE, 1)))), N);
-let HD = HIGH.SUB(REF(HIGH, 1));
-let LD = REF(LOW, 1).SUB(LOW);
-let DMP = SUM(IF(HD.GT(0).AND(HD.GT(LD)), HD, 0), N);
-let DMM = SUM(IF(LD.GT(0).AND(LD.GT(HD)), LD, 0), N);
-let PDI = DMP.MUL(100).DIV(TR);
-let MDI = DMM.MUL(100).DIV(TR);
-let ADX = MA(ABS(MDI.SUB(PDI)).DIV(MDI.ADD(PDI)).MUL(100), M);
-let ADXR = ADX.ADD(REF(ADX, M)).DIV(2);
+// let N = 14;
+// let M = 6;
+//
+// let TR = SUM(MAX(MAX(HIGH.SUB(LOW), ABS(HIGH.SUB(REF(CLOSE, 1)))), ABS(LOW.SUB(REF(CLOSE, 1)))), N);
+// let HD = HIGH.SUB(REF(HIGH, 1));
+// let LD = REF(LOW, 1).SUB(LOW);
+// let DMP = SUM(IF(HD.GT(0).AND(HD.GT(LD)), HD, 0), N);
+// let DMM = SUM(IF(LD.GT(0).AND(LD.GT(HD)), LD, 0), N);
+// let PDI = DMP.MUL(100).DIV(TR);
+// let MDI = DMM.MUL(100).DIV(TR);
+// let ADX = MA(ABS(MDI.SUB(PDI)).DIV(MDI.ADD(PDI)).MUL(100), M);
+// let ADXR = ADX.ADD(REF(ADX, M)).DIV(2);
 log.info(PDI, MDI, ADX, ADXR);
