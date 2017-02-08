@@ -83,4 +83,4 @@
 
 // log.info(BARSLAST(CLOSE.GT(OPEN), 5));
 // log.info(IF(CLOSE.GT(OPEN),"涨","跌"),OPEN,CLOSE);
-log.info(MEMA(CLOSE,5));
+log.info(REF(CLOSE,1),CLOSE);
