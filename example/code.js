@@ -81,4 +81,4 @@
 // let CCI = DIV(SUB(TYP, MA(TYP, N2)), MUL(0.015, AVERAGE(TYP, N2)));
 // draw.line('CCI', CCI, {color: '#ff0000', screen: 'sc3'});
 
-log.info(AVERAGE(ABS(CLOSE), 5));
+log.info(BARSLAST(CLOSE.GT(OPEN), 5));
