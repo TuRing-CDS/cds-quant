@@ -82,4 +82,4 @@
 // draw.line('CCI', CCI, {color: '#ff0000', screen: 'sc3'});
 
 // log.info(BARSLAST(CLOSE.GT(OPEN), 5));
-log.info(CLOSE);
+log.info(COUNT(OPEN.LT(CLOSE),10));
