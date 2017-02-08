@@ -82,4 +82,4 @@
 // draw.line('CCI', CCI, {color: '#ff0000', screen: 'sc3'});
 
 // log.info(BARSLAST(CLOSE.GT(OPEN), 5));
-log.info(LLV(CLOSE,5),HHV(CLOSE,5));
+log.info(IF(CLOSE.GT(OPEN),"涨","跌"),OPEN,CLOSE);
