@@ -83,4 +83,4 @@
 
 log.info(MA(ABS(CLOSE), 5));
 log.info(ABS(CLOSE));
-log.info('==>', MA(ABS(CLOSE, 5)).ADD(ABS(CLOSE)));
+log.info('==>', MA(ABS(CLOSE, 5)).AND(ABS(CLOSE)));
