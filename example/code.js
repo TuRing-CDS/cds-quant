@@ -32,22 +32,14 @@
 //
 // // log.info(CCI)
 //
-// // RSI
-// //
-// // REFLINE: 0, 20, 50, 80, 100;
-// // LC := REF(CLOSE,1);
-// // RSI1:SMA(MAX(CLOSE-LC,0),N1,1)/SMA(ABS(CLOSE-LC),N1,1)*100;
-// // RSI2:SMA(MAX(CLOSE-LC,0),N2,1)/SMA(ABS(CLOSE-LC),N2,1)*100;
-// // RSI3:SMA(MAX(CLOSE-LC,0),N3,1)/SMA(ABS(CLOSE-LC),N3,1)*100;
+// RSI
 //
-// // let RSIN1 = 6;
-// // let RSIN2 = 12;
-// // let RSIN3 = 24;
-// // let LC = REF(CLOSE, 1);
-// // let RSI1 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN1, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN1, 1)).MUL(100);
-// // let RSI2 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN2, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN2, 1)).MUL(100);
-// // let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
-// // log.info(RSI1,RSI2,RSI3)
+// REFLINE: 0, 20, 50, 80, 100;
+// LC := REF(CLOSE,1);
+// RSI1:SMA(MAX(CLOSE-LC,0),N1,1)/SMA(ABS(CLOSE-LC),N1,1)*100;
+// RSI2:SMA(MAX(CLOSE-LC,0),N2,1)/SMA(ABS(CLOSE-LC),N2,1)*100;
+// RSI3:SMA(MAX(CLOSE-LC,0),N3,1)/SMA(ABS(CLOSE-LC),N3,1)*100;
+
 //
 // //DMI
 //
@@ -85,4 +77,18 @@
 // log.info(BARSLAST(CLOSE.GT(OPEN), 5));
 // log.info(IF(CLOSE.GT(OPEN),"涨","跌"),OPEN,CLOSE);
 
-log.info(SUM(CLOSE,10));
+// log.info(SUM(CLOSE,10));
+
+
+let N = PARAM('N', {default: 6});
+let M = PARAM('M', {default: 12});
+let D = PARAM('D', {default: 24});
+
+let RSIN1 = N;
+let RSIN2 = M;
+let RSIN3 = D;
+let LC = REF(CLOSE, 1);
+let RSI1 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN1, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN1, 1)).MUL(100);
+let RSI2 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN2, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN2, 1)).MUL(100);
+let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
+log.info(RSI1, RSI2, RSI3)
