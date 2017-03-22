@@ -1,49 +1,5 @@
-// /**
-//  * Created by Z on 2016-12-13.
-//  */
-const Strategy = require('../lib/strategy');
-const path = require('path');
-// const fetch = require('node-fetch');
 //
-// const Redis = require('redis');
-// const local = Redis.createClient(6379);
-const fs = require('fs');
-// // local.zrange('SS.DAYS.600233.DATE.SSE.A_STOCK', 0, -1, function (err, result) {
-// //     // console.log(err, result.length)
-// //     result.map((item) => {
-// //         let items = item.split(',');
-// //         return {
-// //             time: parseFloat(items[0]),
-// //             open: parseFloat(items[1]),
-// //             low: parseFloat(items[2]),
-// //             high: parseFloat(items[3]),
-// //             close: parseFloat(items[4]),
-// //             volume: parseFloat(items[5])
-// //         }
-// //     }).forEach((item) => {
-// //         // console.log(new Date(item.time),item)
-// //         demo.onTick(item);
-// //         console.log(demo.context.score);
-// //     })
-// //
-// // })
-//
-// let url = `http://api.cavacn.com:8888/tools/stock/quotation/0.2/days/SH/600233`
-// fetch(url).then((res)=>{return res.json()}).then((json)=>{
-//     let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString());
-//     json.result.forEach(function(item){
-//         demo.onTick(item)
-//     })
-//     console.log('===>',demo.getResult().score);
-//     console.log('===>',demo.getParams())
-//     // fs.writeFileSync('./demo2.js',JSON.stringify(demo.getResult()));
-//     // console.log('...文件写入成功');
-//     // console.log(demo.context.draw.getResult().values)
-//     // console.log("==>",demo.context.stock.getResult());
-//     // demo.context.datas.forEach(function(item){
-//     //     console.log(item)
-//     // })
-// }).catch(console.log);
+
 //
 //
 // var getCodes = function (market, type, date, callback) {
@@ -105,6 +61,55 @@ const fs = require('fs');
 // //     console.log('SCORE',  demo.context.score());
 // // })
 
-let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString());
-demo.onTick({});
-console.log(demo.getParams())
+// let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString());
+// demo.onTick({});
+// console.log(demo.getParams())
+//
+const Redis = require('redis');
+// /**
+//  * Created by Z on 2016-12-13.
+//  */
+const Strategy = require('../lib/strategy');
+const path = require('path');
+const fetch = require('node-fetch');
+const fs = require('fs');
+// local.zrange('SS.DAYS.600233.DATE.SSE.A_STOCK', 0, -1, function (err, result) {
+//     // console.log(err, result.length)
+//         let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString(), {N: 12, M: 24, D: 24});
+//     result.map((item) => {
+//         let items = item.split(',');
+//         return {
+//             time: parseFloat(items[0]),
+//             open: parseFloat(items[1]),
+//             low: parseFloat(items[2]),
+//             high: parseFloat(items[3]),
+//             close: parseFloat(items[4]),
+//             volume: parseFloat(items[5])
+//         }
+//     }).forEach((item) => {
+//         // console.log(new Date(item.time),item)
+//         demo.onTick(item);
+//     })
+//
+// })
+let url = `http://api.cavacn.com:8888/tools/stock/quotation/0.2/days/SH/600233`
+fetch(url).then((res) => {
+    return res.json()
+}).then((json) => {
+    let demo = new Strategy('demo', fs.readFileSync(path.join(__dirname, './code.js')).toString(), {N: 12, M: 24, D: 48});
+
+    json.result.forEach(function (item) {
+        demo.onTick(item)
+        console.log('==>',demo.getCurrentSingal())
+    })
+    // console.log('===>', demo.getResult());
+    console.log('===>', demo.getParams());
+    // console.log('===>', demo.getSingals())
+    // fs.writeFileSync('./demo2.js',JSON.stringify(demo.getResult()));
+    // console.log('...文件写入成功');
+    // console.log(demo.context.draw.getResult().values)
+    // console.log("==>",demo.context.stock.getResult());
+    // demo.context.datas.forEach(function(item){
+    //     console.log(item)
+    // })
+}).catch(console.log);

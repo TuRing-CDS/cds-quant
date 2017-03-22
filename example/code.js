@@ -80,15 +80,11 @@
 // log.info(SUM(CLOSE,10));
 
 
-let N = PARAM('N', {default: 6});
-let M = PARAM('M', {default: 12});
-let D = PARAM('D', {default: 24});
-
-let RSIN1 = N;
-let RSIN2 = M;
-let RSIN3 = D;
+let RSIN1 = PARAM('RSIN1', {default: 6});
+let RSIN2 = PARAM('RSIN2', {default: 12});
+let RSIN3 = PARAM('RSIN3', {default: 24});
 let LC = REF(CLOSE, 1);
 let RSI1 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN1, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN1, 1)).MUL(100);
 let RSI2 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN2, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN2, 1)).MUL(100);
 let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
-log.info(RSI1, RSI2, RSI3)
+IF(RSI1.LT(RSI2), BUY(1), SHORT(1))();
