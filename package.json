@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/TuRing-CDS/cds-quant/issues"
   },
-  "homepage": "https://github.com/TuRing-CDS/cds-quant#readme"
+  "homepage": "https://github.com/TuRing-CDS/cds-quant#readme",
+  "dependencies": {
+    "jison": "^0.4.17"
+  }
 }
