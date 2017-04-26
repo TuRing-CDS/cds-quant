@@ -80,11 +80,15 @@
 // log.info(SUM(CLOSE,10));
 
 
-let RSIN1 = PARAM('RSIN1', {default: 6});
-let RSIN2 = PARAM('RSIN2', {default: 12});
-let RSIN3 = PARAM('RSIN3', {default: 24});
-let LC = REF(CLOSE, 1);
-let RSI1 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN1, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN1, 1)).MUL(100);
-let RSI2 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN2, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN2, 1)).MUL(100);
-let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
-IF(RSI1.LT(RSI2), BUY(1), SHORT(1))();
+// let RSIN1 = PARAM('RSIN1', {default: 6});
+// let RSIN2 = PARAM('RSIN2', {default: 12});
+// let RSIN3 = PARAM('RSIN3', {default: 24});
+// let LC = REF(CLOSE, 1);
+// let RSI1 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN1, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN1, 1)).MUL(100);
+// let RSI2 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN2, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN2, 1)).MUL(100);
+// let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
+// IF(RSI1.LT(RSI2), BUY(1), SHORT(1))();
+
+let a = CROSS(C,O);
+
+log.info(a);

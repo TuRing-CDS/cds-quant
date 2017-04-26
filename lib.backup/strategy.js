@@ -1,5 +1,4 @@
 'use strict'
-const fs = require('fs');
 const utils = require('./utils');
 const math = require('./functions');
 const globals = require('./globals');

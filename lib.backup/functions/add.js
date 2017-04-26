@@ -15,7 +15,7 @@ function ADD(express, express2) {
         index = index || this.index;
         let value = getCache.bind(this)(key, index);
         if (null === value) {
-            let current = this.kline[index] || this.current;
+            // let current = this.kline[index] || this.current;
             let v1 = calculation.bind(this)(express, index);
             let v2 = calculation.bind(this)(express2, index);
             value = checkValue.bind(this)(key, index, v1 + v2);

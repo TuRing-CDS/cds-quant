@@ -12,8 +12,8 @@ function CROSS(express, express2) {
         index = index || this.index;
         let value = getCache.bind(this)(key, index);
         if (null === value) {
-            let current = this.kline[index];
-            let result;
+            // let current = this.kline[index];
+            // let result;
             let expvc1 = calculation.bind(this)(express, index);
             let expvl1 = calculation.bind(this)(express, index - 1);
             let expvc2 = calculation.bind(this)(express2, index);
