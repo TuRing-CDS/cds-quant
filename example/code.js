@@ -89,6 +89,6 @@
 // let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
 // IF(RSI1.LT(RSI2), BUY(1), SHORT(1))();
 
-let a = HHV(C,10);
+let a = IF(GT(C,O),'收盘大于开盘','开盘大于收盘');
 
 log.info(a);
