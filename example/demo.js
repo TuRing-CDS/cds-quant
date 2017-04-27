@@ -9,7 +9,8 @@ const fetch = require('node-fetch');
 
 const demo = new Strategy('demo', fs.readFileSync('./code.js').toString(), {b: 30});
 
-console.log(demo.getParams());
+console.log('===>语法错误', demo.check());
+
 
 // let url = `http://api.cavacn.com:8888/tools/stock/quotation/0.2/days/SH/600233`;
 //
