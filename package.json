@@ -1,6 +1,6 @@
 {
   "name": "cds-quant",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "cds-quant",
   "main": "index.js",
   "directories": {
