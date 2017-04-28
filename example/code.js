@@ -93,4 +93,4 @@ let b = param('b', {default: 10});
 
 let a = SUM(CLOSE, 10);
 
-SCORE(a);
+log.info(a);
