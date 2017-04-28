@@ -19,5 +19,6 @@ fetch(url).then((res) => {
 }).then((json) => {
     json.result.forEach((item) => {
         demo.onBar(item);
+        console.log('===>',demo.getScore());
     })
 });
