@@ -1,6 +1,6 @@
 {
   "name": "cds-quant",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "cds-quant",
   "main": "index.js",
   "directories": {
@@ -22,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/TuRing-CDS/cds-quant/issues"
   },
-  "homepage": "https://github.com/TuRing-CDS/cds-quant#readme",
-  "dependencies": {
-    "jison": "^0.4.17"
-  }
+  "homepage": "https://github.com/TuRing-CDS/cds-quant#readme"
 }

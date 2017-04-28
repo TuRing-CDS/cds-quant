@@ -12,7 +12,7 @@ const opts = {cache: {maxLength: 10}};
 
 const demo = new Strategy('demo', fs.readFileSync('./code.js').toString(), opts, {b: 30});
 
-// console.log('===>语法错误', demo.check());
+console.log('===>语法错误', demo.check());
 
 
 let url = `http://api.cavacn.com:8888/tools/stock/quotation/0.2/days/SH/600233`;
@@ -22,6 +22,6 @@ fetch(url).then((res) => {
 }).then((json) => {
     json.result.forEach((item) => {
         demo.onBar(item);
-        // console.log('===>', demo.getScore());
+        console.log('===>', demo.getScore());
     })
 });

@@ -91,6 +91,6 @@
 
 let b = param('b', {default: 10});
 
-let a = SUM(CLOSE, 10);
+let a = SUM(c.GT(o), 10);
 
-log.info(a);
+log.info(a,b);
