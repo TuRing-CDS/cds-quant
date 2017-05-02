@@ -27,7 +27,11 @@ fetch(url).then((res) => {
 }).then((json) => {
     json.result.forEach((item) => {
         item.value = 1000000;
+        item.concepts = ['00001', '00002'];
         demo.onBar(item);
-        console.log('===>', demo.getScore());
-    })
+        if(demo.error){
+            console.log(demo.error)
+        }
+    });
+    console.log('===>', demo.getScore());
 });

@@ -89,6 +89,12 @@
 // let RSI3 = SMA(MAX(CLOSE.SUB(LC), 0), RSIN3, 1).DIV(SMA(ABS(CLOSE.SUB(LC)), RSIN3, 1)).MUL(100);
 // IF(RSI1.LT(RSI2), BUY(1), SHORT(1))();
 
-let temp = param('marketValue', {default: 100000});
+// let temp = param('marketValue', {default: 100000});
+//
+// score(value.gt(temp));
 
-score(value.gt(temp));
+let concept = param('concept', {default: '00001'});
+
+log.info(concept,concepts,value)
+
+score(concept.in(concepts));

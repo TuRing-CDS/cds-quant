@@ -19,4 +19,20 @@ module.exports = function (context) {
             return value;
         }.bind(context);
     }();
+
+    /**
+     * 概念
+     */
+    context.CONCEPTS = context.concepts = function () {
+        const key = context.getKey('CONCEPT');
+        return function (index) {
+            index = index || this.index;
+            let value = this.getCache(key, index);
+            if (null === value) {
+                let current = this.kLine[index] || this.current;
+                value = this.checkValue(current.concepts);
+            }
+            return value;
+        }.bind(context);
+    }();
 };
