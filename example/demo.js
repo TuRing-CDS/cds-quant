@@ -16,7 +16,8 @@ const demo = new Strategy('demo', fs.readFileSync('./code.js').toString(), opts,
 
 demo.loadCustomModel(custom);
 
-console.log('===>语法错误', demo.check());
+console.log('===>', '语法检查:', demo.check());
+console.log('===>', '参数检查:', demo.getParams());
 
 
 let url = `http://api.cavacn.com:8888/tools/stock/quotation/0.2/days/SH/600233`;
